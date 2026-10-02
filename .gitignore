@@ -1,0 +1,41 @@
+# Dependencies
+node_modules/
+
+# Cypress specific artifacts
+# (Cypress records test runs, stores videos, and captures screenshots locally by default)
+cypress/videos/
+cypress/screenshots/
+cypress/downloads/
+
+# Cypress binary cache (prevents committing downloaded Cypress desktop binaries if installed locally)
+.cypress-cache/
+
+# Environment variables and secrets (crucial to keep credentials out of version control)
+#.env
+#.env.local
+#.env*.local
+
+# Test reports and coverage (if using mochawesome, cucumber reports, or nyc/istanbul)
+mochawesome-report/
+reports/
+test-results/
+.nyc_output/
+coverage/
+
+# IDE and Editor files
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
