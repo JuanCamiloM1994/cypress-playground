@@ -9,4 +9,6 @@ module.exports = defineConfig({
   },
   viewportWidth: 1280,
   viewportHeight: 720,
+  //Global delay for all commands
+  //defaultCommandTimeout: 10000,
 });
