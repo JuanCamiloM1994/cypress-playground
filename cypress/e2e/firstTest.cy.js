@@ -37,6 +37,25 @@ it('Hello world 1', () => {
 
 });
 
+it.only('Cypress Locator Method', () => {
+    //Theory
+    //get() - to find elements on the page globaly
+    //contains() - to find elements with specific text
+    //find() -to find only child elements 
+
+    //cy.contains('Sign in', { matchCase: false });
+    cy.contains('Sign in');
+    cy.contains('[status="warning"]', 'Sign in');
+    cy.contains('nb-card', 'Horizontal form').find('button');
+    cy.contains('nb-card', 'Horizontal form').contains('Sign in');
+    cy.contains('nb-card', 'Horizontal form').get('button');
+
+
+
+
+
+});
+
 
 
 
