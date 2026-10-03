@@ -103,7 +103,7 @@ it('Reusing Locators', () => {
 
 })
 
-it.only('Extracting Values', () => {
+it('Extracting Values', () => {
     // 1. using a JQuery method
     cy.get('[for="exampleInputEmail1"]').then( label => {
         const emailLabel = label.text()
@@ -128,6 +128,22 @@ it.only('Extracting Values', () => {
     cy.get('#exampleInputEmail1').invoke('prop', 'value').then( value => {
         console.log(value)
     })
+})
+
+
+it.only('Assertions', () => {
+
+    cy.get('[for="exampleInputEmail1"]').should('have.text', 'Email address')
+
+    cy.get('[for="exampleInputEmail1"]').then( label => {
+        expect(label).to.have.text('Email address')
+    })
+
+    cy.get('[for="exampleInputEmail1"]').invoke('text').then( emailLabel => {
+        expect(emailLabel).to.equal('Email address')
+        cy.wrap(emailLabel).should('equal', 'Email address')
+    })
+
 })
 /* 
 describe('My First Test Suite', () => {
