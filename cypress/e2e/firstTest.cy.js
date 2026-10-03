@@ -70,6 +70,13 @@ it('Parent Elements', () => {
     cy.get('#inputEmail1').parentsUntil('nb-card-body').find('button');
 });
 
+it('Cypress chains', () => {
+
+    cy.get('#inputEmail1')
+    .parents('form').find('button').click();
+
+    cy.get('#inputEmail1').parents('form').find('nb-radio').first().should('have.text', 'Option 1');
+});
 
 
 /* 
