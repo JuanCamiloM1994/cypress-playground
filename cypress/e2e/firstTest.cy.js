@@ -25,7 +25,7 @@ it('Hello world 1', () => {
     cy.get('[placeholder="Email"]');
 
     //by entire class value 
-    cy.get('class="input-full-width size-medium status-basic shape-rectangle nb-transition"');
+    cy.get('[class="input-full-width size-medium status-basic shape-rectangle nb-transition"]');
 
     //how to combine several attributes
     cy.get('[fullwidth][placeholder="Email"]');
