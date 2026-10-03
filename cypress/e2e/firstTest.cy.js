@@ -61,7 +61,14 @@ it('Child Elements', () => {
     cy.get('nb-card > nb-card-body [placeholder="Jane Doe"]');
 });
 
+it('Parent Elements', () => {
 
+    cy.get('#inputEmail1').parents('form').find('button');
+
+    cy.contains('Using the Grid').parents().find('button');
+
+    cy.get('#inputEmail1').parentsUntil('nb-card-body').find('button');
+});
 
 
 
