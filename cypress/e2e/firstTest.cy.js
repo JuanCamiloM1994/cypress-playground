@@ -1,6 +1,6 @@
 /// <reference types="cypress" />
 
-beforeEach('Open test application',() => {
+beforeEach('Open test application', () => {
     //only / because it refers to the base URL defined in cypress.config.js
     cy.visit('/');
     cy.contains('Forms').click();
@@ -37,7 +37,7 @@ it('Hello world 1', () => {
 
 });
 
-it.only('Cypress Locator Method', () => {
+it('Cypress Locator Method', () => {
     //Theory
     //get() - to find elements on the page globaly
     //contains() - to find elements with specific text
@@ -49,13 +49,17 @@ it.only('Cypress Locator Method', () => {
     cy.contains('nb-card', 'Horizontal form').find('button');
     cy.contains('nb-card', 'Horizontal form').contains('Sign in');
     cy.contains('nb-card', 'Horizontal form').get('button');
-
-
-
-
-
 });
 
+it('Child Elements', () => {
+    cy.contains('nb-card', 'Using the Grid').find('.row').find('button');
+
+    cy.get('nb-card').find('nb-radio-group').contains('Option 1');
+
+    cy.get('nb-card nb-radio-group').contains('Option 1');
+
+    cy.get('nb-card > nb-card-body [placeholder="Jane Doe"]');
+});
 
 
 
