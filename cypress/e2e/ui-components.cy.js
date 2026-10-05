@@ -16,7 +16,7 @@ it.only('input fields', () => {
         .press(Cypress.Keyboard.Keys.TAB)
 })
 
-it.only('radio buttons', () => {
+it('radio buttons', () => {
     cy.contains('Forms').click()
     cy.contains('Form Layouts').click()
 
@@ -28,5 +28,13 @@ it.only('radio buttons', () => {
     })
 
     cy.contains('nb-card', 'Using the Grid').contains('label', 'Option 1').find('input').check({ force: true })
+})
+
+it('checkboxes', () => {
+    cy.contains('Modal & Overlays').click()
+    cy.contains('Toastr').click()
+
+    cy.get('[type="checkbox"]').check({force: true})
+    cy.get('[type="checkbox"]').should('be.checked')
 
 })
