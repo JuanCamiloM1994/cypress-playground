@@ -15,11 +15,5 @@ it.only('input fields', () => {
     cy.get('#inputEmail1').should('not.have.value', '').clear().type('test@bondaracademy.com')
     .press(Cypress.Keyboard.Keys.TAB)
 
-    // cy.contains('Auth').click()
-    // cy.contains('Login').click()
-
-    // cy.get('#input-email').type('test@bondaracademy.com')
-    // cy.get('#input-password').type('Welcome{enter}')
-
 
 })
