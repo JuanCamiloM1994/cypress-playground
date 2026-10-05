@@ -34,7 +34,7 @@ it('checkboxes', () => {
     cy.contains('Modal & Overlays').click()
     cy.contains('Toastr').click()
 
-    cy.get('[type="checkbox"]').check({force: true})
+    cy.get('[type="checkbox"]').check({ force: true })
     cy.get('[type="checkbox"]').should('be.checked')
 })
 
@@ -52,7 +52,7 @@ it('lists and dropdowns', () => {
         cy.wrap(dropdown).click()
         cy.get('.option-list nb-option').each((option, index, list) => {
             cy.wrap(option).click()
-            if(index < list.length-1)
+            if (index < list.length - 1)
                 cy.wrap(dropdown).click()
         })
     })
@@ -78,11 +78,53 @@ it('dialog boxes', () => {
     })
 
     //2. option 
-    cy.window().then( win => {
+    cy.window().then(win => {
         //true will simulate clicking "OK" on the confirm dialog
         //false will simulate clicking "Cancel" on the confirm dialog
         cy.stub(win, 'confirm').as('dialogBox').returns(false)
     })
     cy.get('.nb-trash').first().click()
     cy.get('@dialogBox').should('be.calledWith', 'Are you sure you want to delete?')
+})
+
+it('web tables', () => {
+    cy.contains('Tables & Data').click()
+    cy.contains('Smart Table').click()
+
+    //1. How to find by text
+    cy.get('tbody').contains('tr', 'Larry').then(tableRow => {
+        cy.wrap(tableRow).find('.nb-edit').click()
+        cy.wrap(tableRow).find('[placeholder="Age"]').clear().type('35')
+        cy.wrap(tableRow).find('.nb-checkmark').click()
+        cy.wrap(tableRow).find('td').last().should('have.text', '35')
+    })
+
+    // //2. How to find by index
+    cy.get('.nb-plus').click()
+    cy.get('thead tr').eq(2).then(tableRow => {
+        cy.wrap(tableRow).find('[placeholder="First Name"]').type('John')
+        cy.wrap(tableRow).find('[placeholder="Last Name"]').type('Smith')
+        cy.wrap(tableRow).find('.nb-checkmark').click()
+    })
+
+    cy.get('tbody tr').first().find('td').then(tableColumns => {
+        cy.wrap(tableColumns).eq(2).should('have.text', 'John')
+        cy.wrap(tableColumns).eq(3).should('have.text', 'Smith')
+    })
+
+    //3. Looping though the rows
+
+    const ages = [20, 30, 40, 200]
+
+    cy.wrap(ages).each(age => {
+        cy.get('[placeholder="Age"]').clear().type(age)
+        cy.wait(500)
+        cy.get('tbody tr').each(tableRows => {
+            if (age == 200) {
+                cy.wrap(tableRows).should('contain.text', 'No data found')
+            } else {
+                cy.wrap(tableRows).find('td').last().should('have.text', age)
+            }
+        })
+    })
 })
